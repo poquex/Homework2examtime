@@ -5,11 +5,47 @@ git clone https://github.com/poquex/Homework2examtime.git /githubfiles
 
 #configuracion HTTML con github
 
+dnf install httpd -y
+
+systemctl start httpd
+firewall-cmd --permanent --add-service=http
+firewall-cmd --reload
+systemctl enable httpd
+
+mkdir -p /var/www/html/duoc.cl
+mkdir -p /var/www/html/espinoza.cl
+
+mkdir /etc/httpd/sites-available /etc/httpd/sites-enabled
+
+chown -R $USER:$USER /var/www/html/duoc.cl
+chown -R $USER:$USER /var/www/html/espinoza.cl
+chmod -R 755 /var/www
+
 cp /githubfiles/duoc.cl_httml.txt /var/www/html/duoc.cl/index.html
-cp /githubfiles/espinoza.cl_httml.txt /var/www/espinoza.cl/index.html
+cp /githubfiles/espinoza.cl_httml.txt /var/www/html/espinoza.cl/index.html
 
 cp /githubfiles/duoc.cl_httpd.txt /etc/httpd/sites-available/duoc.cl.conf
 cp /githubfiles/espinoza.cl_httpd.txt /etc/httpd/sites-available/espinoza.cl.conf
+
+cat /githubfiles/httpd.conf >> /etc/httpd/conf/httpd.conf
+
+ln -s /etc/httpd/sites-available/duoc.cl.conf /etc/httpd/sites-enabled/
+ln -s /etc/httpd/sites-available/espinoza.cl.conf /etc/httpd/sites-enabled/
+
+
+
+
+systemctl start httpd
+
+
+setsebool -P httpd_unified 1
+
+
+systemctl restart httpd
+
+
+
+
 
 #con los comandos cp los archivos index.html y .conf estarian terminados y listos
 
@@ -19,6 +55,9 @@ cp /githubfiles/espinoza.cl_httpd.txt /etc/httpd/sites-available/espinoza.cl.con
 dnf install mariadb-server -y
 systemctl start mariadb
 mysql_secure_installation
+
+
+
 
 
 # FTP
