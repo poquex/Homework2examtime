@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title> Espinoza y Valencia primer semestre de 2022 3er semestre de carrera ADMINISTRACION SISTEMA OPERATIVO ENTERPRISE_004D </title>
+</head>
+
+<body>
+
+  <h1> Espinoza y Valencia primer semestre de 2022 3er semestre de carrera ADMINISTRACION SISTEMA OPERATIVO ENTERPRISE_004D </h1>
+   <p>This is the home page!</p>
+
+</body>
+</html>

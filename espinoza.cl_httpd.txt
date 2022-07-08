@@ -1,0 +1,4 @@
+<VirtualHost *:80>
+    ServerAlias www.espinoza.cl
+    DocumentRoot /var/www/html/espinoza.cl
+</VirtualHost>
