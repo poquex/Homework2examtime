@@ -1,0 +1,35 @@
+#descarga archivos txt para HTTML, servidor web
+
+dnf install git -y
+git clone https://github.com/poquex/Homework2examtime.git /githubfiles
+
+#configuracion HTTML con github
+
+cp /githubfiles/duoc.cl_httml.txt /var/www/html/duoc.cl/index.html
+cp /githubfiles/espinoza.cl_httml.txt /var/www/espinoza.cl/index.html
+
+cp /githubfiles/duoc.cl_httpd.txt /etc/httpd/sites-available/duoc.cl.conf
+cp /githubfiles/espinoza.cl_httpd.txt /etc/httpd/sites-available/espinoza.cl.conf
+
+#con los comandos cp los archivos index.html y .conf estarian terminados y listos
+
+
+#descarga Mariadb & mysql, base de datos
+
+dnf install mariadb-server -y
+systemctl start mariadb
+mysql_secure_installation
+
+
+# FTP
+
+dnf install vsftpd -y
+systemctl enable --now vsftpd
+firewall-cmd --permanent --zone=public --add-service=ftp
+firewall-cmd --reload
+firewall-cmd --permanent --zone=public --add-port=10000-10100/tcp
+firewall-cmd --reload
+
+#configuracion FTP con archivos github
+
+cat /githubfiles/ftp_vsftpd.txt >> /etc/vsftpd/vsftpd.conf
